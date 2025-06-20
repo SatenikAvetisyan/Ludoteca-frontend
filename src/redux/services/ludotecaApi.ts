@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type{ Game } from "../../types/Game";
 import type{ Category } from "../../types/Category";
+import type{ Clients } from "../../types/Clients";
 import type{ Author, AuthorResponse } from "../../types/Author";
 
 export const ludotecaAPI = createApi({
@@ -8,7 +9,7 @@ export const ludotecaAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080",
   }),
-  tagTypes: ["Category", "Author", "Game"],
+  tagTypes: ["Category", "Author", "Game", "Clients"],
   endpoints: (builder) => ({
     getCategories: builder.query<Category[], null>({
       query: () => "category",
@@ -39,6 +40,36 @@ export const ludotecaAPI = createApi({
         body: payload,
       }),
       invalidatesTags: ["Category"],
+    }),
+    getClients: builder.query<Clients[], null>({
+      query: () => "clients",
+      providesTags: ["Clients"],
+    }),
+    createClients: builder.mutation({
+      query: (payload) => ({
+        url: "/clients",
+        method: "PUT",
+        body: payload,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Clients"],
+    }),
+    deleteClients: builder.mutation({
+      query: (id: string) => ({
+        url: `/clients/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Clients"],
+    }),
+    updateClients: builder.mutation({
+      query: (payload: Clients) => ({
+        url: `clients/${payload.id}`,
+        method: "PUT",
+        body: payload,
+      }),
+      invalidatesTags: ["Clients"],
     }),
     getAllAuthors: builder.query<Author[], null>({
       query: () => "author",
