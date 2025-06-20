@@ -20,6 +20,7 @@ const pages = [
   { name: "Catalogo", link: "games" },
   { name: "Categorías", link: "categories" },
   { name: "Autores", link: "authors" },
+  { name: "Clientes", link: "clients" },
 ];
 
 export const Layout = () => {
