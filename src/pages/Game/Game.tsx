@@ -34,7 +34,7 @@ export const Game = () => {
   const [updateGameApi, { isLoading: isLoadingUpdate, error: errorUpdate }] =
     useUpdateGameMutation();
 
-  const { data: categories } = useGetCategoriesQuery(null);
+  const { data: categories = [] } = useGetCategoriesQuery(null);
 
   const [createGameApi, { isLoading: isLoadingCreate, error: errorCreate }] =
     useCreateGameMutation();

@@ -91,7 +91,7 @@ export const ludotecaAPI = createApi({
     getGames: builder.query<Game[], { title: string; idCategory: string }>({
       query: ({ title, idCategory }) => {
         return {
-          url: "game/",
+          url: "game",
           params: { title, idCategory },
         };
       },
