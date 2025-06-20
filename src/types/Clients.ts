@@ -1,4 +1,4 @@
-export interface Category {
+export interface Clients {
     id: string;
     name: string;
 }

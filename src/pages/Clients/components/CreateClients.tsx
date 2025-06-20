@@ -13,7 +13,7 @@ interface Props {
   create: (name: string) => void;
 }
 
-export default function CreateCategory(props: Props) {
+export default function CreateClients(props: Props) {
   const [name, setName] = useState(props?.clients?.name || "");
 
 
@@ -21,7 +21,7 @@ export default function CreateCategory(props: Props) {
     <div>
       <Dialog open={true} onClose={props.closeModal}>
         <DialogTitle>
-          {props.clients ? "Actualizar Categoría" : "Crear Categoría"}
+          {props.clients ? "Actualizar Clientes" : "Crear Clientes"}
         </DialogTitle>
         <DialogContent>
           {props.clients && (
