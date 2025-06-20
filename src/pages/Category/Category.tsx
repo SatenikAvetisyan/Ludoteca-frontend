@@ -12,7 +12,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
 import styles from "./Category.module.css";
 import type { Category as CategoryModel } from "../../types/Category";
-import CreateCategory from "../components/CreateCategory";
+import CreateCategory from "./components/CreateCategory";
 import { ConfirmDialog } from "../../components/ConfirmDialog";
 import { useAppDispatch } from "../../redux/hooks";
 import {

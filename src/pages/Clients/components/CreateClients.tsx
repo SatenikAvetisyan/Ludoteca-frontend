@@ -5,33 +5,33 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import type { Category } from "../../types/Category";
+import type { Clients } from "../../../types/Clients";
 
 interface Props {
-  category: Category | null;
+  clients: Clients | null;
   closeModal: () => void;
   create: (name: string) => void;
 }
 
 export default function CreateCategory(props: Props) {
-  const [name, setName] = useState(props?.category?.name || "");
+  const [name, setName] = useState(props?.clients?.name || "");
 
 
   return (
     <div>
       <Dialog open={true} onClose={props.closeModal}>
         <DialogTitle>
-          {props.category ? "Actualizar Categoría" : "Crear Categoría"}
+          {props.clients ? "Actualizar Categoría" : "Crear Categoría"}
         </DialogTitle>
         <DialogContent>
-          {props.category && (
+          {props.clients && (
             <TextField
               margin="dense"
               disabled
               id="id"
               label="Id"
               fullWidth
-              value={props.category.id}
+              value={props.clients.id}
               variant="standard"
             />
           )}
@@ -48,7 +48,7 @@ export default function CreateCategory(props: Props) {
         <DialogActions>
           <Button onClick={props.closeModal}>Cancelar</Button>
           <Button onClick={() => props.create(name)} disabled={!name}>
-            {props.category ? "Actualizar" : "Crear"}
+            {props.clients ? "Actualizar" : "Crear"}
           </Button>
         </DialogActions>
       </Dialog>
