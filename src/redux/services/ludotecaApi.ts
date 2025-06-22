@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type{ Game } from "../../types/Game";
 import type{ Category } from "../../types/Category";
 import type{ Clients } from "../../types/Clients";
+import type{ Loans } from "../../types/Loans";
 import type{ Author, AuthorResponse } from "../../types/Author";
 
 export const ludotecaAPI = createApi({
@@ -9,7 +10,7 @@ export const ludotecaAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080",
   }),
-  tagTypes: ["Category", "Author", "Game", "Clients"],
+  tagTypes: ["Category", "Author", "Game", "Clients", "Loans"],
   endpoints: (builder) => ({
     getCategories: builder.query<Category[], null>({
       query: () => "category",
@@ -148,6 +149,34 @@ export const ludotecaAPI = createApi({
       invalidatesTags: ["Game"],
     }),
 
+    getLoans: builder.query<Loans[], { title?: string; clientId?: string; date?: string }>({
+      query: ({ title, clientId, date }) => ({
+        url: "/loan",
+        method: "POST",
+        body: { title, clientId, date },
+      }),
+      providesTags: ["Loans"],
+    }),
+    
+    createLoan: builder.mutation({
+      query: (payload) => ({
+        url: "/loan",
+        method: "PUT",
+        body: payload,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Loans"],
+    }),
+    
+    deleteLoan: builder.mutation({
+      query: (id: string) => ({
+        url: `/loan/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Loans"],
+    }),  
   }),
 });
 
@@ -167,5 +196,8 @@ export const {
   useUpdateAuthorMutation,
   useCreateGameMutation,
   useGetGamesQuery,
-  useUpdateGameMutation
+  useUpdateGameMutation,
+  useGetLoansQuery,
+  useCreateLoanMutation,
+  useDeleteLoanMutation
 } = ludotecaAPI;
