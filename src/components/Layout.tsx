@@ -21,7 +21,7 @@ const pages = [
   { name: "Categorías", link: "categories" },
   { name: "Autores", link: "authors" },
   { name: "Clientes", link: "clients" },
-  { name: "Préstamos", link: "loans" },
+  { name: "Préstamos", link: "loan" },
 ];
 
 export const Layout = () => {

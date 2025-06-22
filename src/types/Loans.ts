@@ -3,8 +3,8 @@ import type{ Game } from "./Game";
 
 export interface Loans {
   id: string;
-  loanDate: Date;
-  returnDate: Date;
+  loanDate: string;
+  returnDate: string;
   clients?: Clients;
   game?: Game;
 }
