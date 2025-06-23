@@ -5,6 +5,6 @@ export interface Loans {
   id: string;
   loanDate: string;
   returnDate: string;
-  clients?: Clients;
+  client?: Clients;
   game?: Game;
 }

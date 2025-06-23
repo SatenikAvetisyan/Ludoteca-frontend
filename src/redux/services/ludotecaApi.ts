@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type{ Game } from "../../types/Game";
 import type{ Category } from "../../types/Category";
 import type{ Clients } from "../../types/Clients";
-import type{ Loans } from "../../types/Loans";
+import type{ Loans } from "../../types/Loan";
 import type{ Author, AuthorResponse } from "../../types/Author";
 
 export const ludotecaAPI = createApi({
@@ -149,12 +149,13 @@ export const ludotecaAPI = createApi({
       invalidatesTags: ["Game"],
     }),
 
-    getLoans: builder.query<Loans[], { title?: string; clientId?: string; date?: string }>({
-      query: ({ title, clientId, date }) => ({
-        url: "/loan",
-        method: "POST",
-        body: { title, clientId, date },
-      }),
+    getLoans: builder.query<Loans[], { title?: string; clientId?: string; loanDate?: string; returnDate?: string;  }>({
+      query: ({ title, clientId, loanDate, returnDate }) => {
+        return {
+          url: "loan",
+          params: { title, clientId, loanDate, returnDate },
+        };
+      },
       providesTags: ["Loans"],
     }),
     
